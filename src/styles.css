@@ -1,0 +1,66 @@
+:root{
+  --bg:#0A0A0B;--panel:#121214;--line:#2A2A2F;--grid:#1D1D21;--ink:#F3F3F1;--ink-2:#A4A4AB;
+  --t-quantum:#5BAD1E;--t-thermo:#E8690A;--t-photonics:#F0AB00;--t-llvm:#9566E0;--t-sem:var(--ink);--t-ai:#3B6BF0;
+  --t-llm:#B9DB43;--t-dsp:#439DDB;--t-os:#BDBDC2;--t-co:#1AAB7C;--t-math:#E0393E;
+  --f-display:'Space Grotesk',system-ui,sans-serif;--f-body:'Inter',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#FAFAF8;--panel:#FFFFFF;--line:#DCDCD6;--grid:#ECECE7;--ink:#0A0A0B;--ink-2:#55555C;--t-os:#9A9AA2;color-scheme:light}}
+:root[data-theme="light"]{--bg:#FAFAF8;--panel:#FFFFFF;--line:#DCDCD6;--grid:#ECECE7;--ink:#0A0A0B;--ink-2:#55555C;--t-os:#9A9AA2;color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{position:relative;max-width:1120px;margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+h1,h2{font-family:var(--f-display);font-weight:600;margin:0;text-wrap:balance}
+h1{font-size:34px;letter-spacing:-.02em}
+h2{font-size:18px}
+.sub{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);letter-spacing:.04em;text-transform:uppercase;margin:6px 0 0}
+.note{color:var(--ink-2);font-size:13px;margin:4px 0 14px;max-width:70ch}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--panel)}
+.tile .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.tile .v{font-family:var(--f-mono);font-weight:500;font-size:28px;font-variant-numeric:tabular-nums;margin-top:2px}
+.tile .n{font-family:var(--f-mono);font-size:11px;color:var(--ink-2)}
+.bar{height:4px;background:var(--line);border-radius:2px;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);width:0}
+.banner{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;color:var(--ink-2);font-size:13px}
+button.ghost,button.primary{font:500 13px var(--f-body);border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink)}
+button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.mxwrap{overflow-x:auto;padding-bottom:4px}
+.mx{display:grid;grid-template-columns:112px repeat(11,minmax(36px,1fr));gap:4px;min-width:560px}
+.mx .colh{height:150px;display:flex;align-items:flex-end;justify-content:center}
+.mx .colh span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.mx .rowh{display:flex;align-items:center;font-size:12px;color:var(--ink-2)}
+.cell{height:38px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 12px var(--f-mono);display:flex;align-items:center;justify-content:center;padding:0;font-variant-numeric:tabular-nums}
+.cell.empty{border-style:dashed}
+button.cell{cursor:pointer;border-color:color-mix(in srgb,var(--c) 75%,transparent)}
+button.cell:hover{background:color-mix(in srgb,var(--c) 22%,transparent)}
+button.cell[aria-pressed="true"]{background:var(--c);color:var(--bg);border-color:var(--c)}
+.panel{margin-top:16px;border-top:1px solid var(--line);padding-top:16px}
+.panel .pick{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.pick i{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--ink-2)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;align-items:end}
+.fields .wide{grid-column:span 2}
+label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink-2)}
+input{font:400 14px var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0;width:100%}
+input[type=number],input[type=time],input[type=date]{font-family:var(--f-mono)}
+.chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.chips button{font:500 12px var(--f-mono);padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-2);cursor:pointer}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:12px;font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+svg{display:block;max-width:100%}
+svg text{fill:var(--ink-2);font:400 11px var(--f-mono)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);padding:6px 10px 6px 0;border-bottom:1px solid var(--line)}
+td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.m{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.tblwrap{overflow-x:auto}
+.empty-state{color:var(--ink-2);font-size:13px;padding:24px 0}
+.tip{position:absolute;z-index:20;pointer-events:none;max-width:280px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;font:500 13px var(--f-mono);z-index:30}
+@media (max-width:520px){h1{font-size:28px}.fields .wide{grid-column:span 1}}

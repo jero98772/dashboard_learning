@@ -1,0 +1,7 @@
+id,date,time,topic,format,minutes,title,sample,created
+a0b1d183,2026-10-22,09:30,Quantum,Conference,120,,false,1792781231736
+6dc238be,2026-10-22,11:30,Quantum,Conference,60,,false,1792781240492
+35459ff7,2026-10-23,14:00,Quantum,Conference,60,,false,1792781262987
+7afa1048,2026-10-23,19:00,LLM,Video,30,,false,1792781310391
+5133c5af,2026-10-08,08:00,LLVM,Script,30,,false,1792781337151
+332b1e44,2026-10-21,13:00,Build a company,Article,60,,false,1792781413399
